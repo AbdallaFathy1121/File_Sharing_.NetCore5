@@ -26,8 +26,15 @@ using File_Sharing.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "D:\Asp.net Projects\File_Sharing\File_Sharing\Views\_ViewImports.cshtml"
+using File_Sharing.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d6a5625cc8fb4476f348b0fe9041c550465d8bf9", @"/Views/Shared/Error.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"185cd224d3ab698665705f705cc00fcea4214203", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c96e1a8c33b6374280f73d199495dea0719a507f", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Error : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ErrorViewModel>
     {
         #pragma warning disable 1998

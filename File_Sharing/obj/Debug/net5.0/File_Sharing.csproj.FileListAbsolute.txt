@@ -434,3 +434,4 @@ D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Accou
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Uploads\Create.cshtml.g.cs
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.csproj.AssemblyReference.cache
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Uploads\Index.cshtml.g.cs
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Uploads\Results.cshtml.g.cs

@@ -13,5 +13,14 @@ namespace File_Sharing.ViewModels
         public IFormFile File { get; set; }
     }
 
+    public class UploadViewModel
+    {
+        public string UploadId { get; set; }
+        public string OriginalFileName { get; set; }
+        public string FileName { get; set; }
+        public string ContentType { get; set; }
+        public decimal Size { get; set; }
+        public DateTime CreationDate { get; set; }
+    }
 
 }

@@ -41,7 +41,17 @@ namespace File_Sharing.Controllers
         // Route => Uploads/Index
         public IActionResult Index()
         {
-            var result = UploadsService.GetUploadsByUserId(UserId);
+            var result = context.Uploads.Where(a => a.UserId == UserId)
+                .Select(a => new UploadViewModel
+                {
+                    UploadId = a.UploadId,
+                    OriginalFileName = a.OriginalFileName,
+                    FileName = a.FileName,
+                    ContentType = a.ContentType,
+                    Size = a.Size,
+                    CreationDate = a.CreationDate
+                }).OrderBy(s => s.CreationDate);
+
             return View(result);
         }
 
@@ -90,7 +100,7 @@ namespace File_Sharing.Controllers
         {
             var upload = await context.Uploads.FindAsync(id);
             
-            if (upload == null)
+            if (upload == null || upload.UserId != UserId)
                 return NotFound();
 
             context.Uploads.Remove(upload);
@@ -100,6 +110,24 @@ namespace File_Sharing.Controllers
 
         }
 
+        // Form Search Uploads By File Name
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult Results(string term)
+        {
+            var result = context.Uploads.Where(a => a.OriginalFileName.Contains(term))
+                .Select(a => new UploadViewModel
+                {
+                    OriginalFileName = a.OriginalFileName,
+                    FileName = a.FileName,
+                    ContentType = a.ContentType,
+                    Size = a.Size,
+                    CreationDate = a.CreationDate
+                }).OrderBy(s => s.CreationDate);
+
+            return View(result);
+        }
+        
 
 
     }
