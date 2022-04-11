@@ -1,0 +1,57 @@
+﻿@model List<Uploads>
+
+@{
+    ViewData["Title"] = "Index";
+    var imagesContentTypes = new[] { "image/jpeg", "image/png", "image/svg+xml" };
+}
+
+<h1>My Uploads</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Preview</th>
+            <th>
+                FileName
+            </th>
+            <th>
+                Size
+            </th>
+            <th>
+                ContentType
+            </th>
+            <th>DateTime</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @if (imagesContentTypes.Contains(item.ContentType))
+                {
+                    <img src="/Uploads/@item.FileName" width="120" height="120" class="img-thumbnail" alt="Alternate Text" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OriginalFileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new {  id=item.UploadId  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
