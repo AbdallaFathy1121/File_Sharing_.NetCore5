@@ -19,22 +19,27 @@ namespace File_Sharing.Controllers
             this.userManager = userManager;
         }
 
-        // Account/Login
+        // View Page Login
+        // Route => Account/Login
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
+        // Form Login
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if(ModelState.IsValid)
             {
                 var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, true);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Create", "Uploads");
+                    if (!string.IsNullOrEmpty(returnUrl))
+                        return LocalRedirect(returnUrl);
+                    else
+                        return RedirectToAction("Create", "Uploads");
                 }
             }
             return View(model);
@@ -42,13 +47,15 @@ namespace File_Sharing.Controllers
 
         /// /////////////////////////////////////////////////////
 
-        // Account/Register
+        // View Page Register
+        // Route => Account/Register
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
+        // Form Register
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -75,6 +82,7 @@ namespace File_Sharing.Controllers
 
         /// /////////////////////////////////////////////////////
 
+        // Action LogOut
         [HttpGet]
         public async Task<IActionResult> LogOut()
         {

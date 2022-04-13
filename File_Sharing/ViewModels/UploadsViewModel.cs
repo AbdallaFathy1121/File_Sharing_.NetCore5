@@ -21,6 +21,7 @@ namespace File_Sharing.ViewModels
         public string ContentType { get; set; }
         public decimal Size { get; set; }
         public DateTime CreationDate { get; set; }
+        public long DownloadCount { get; set; }
     }
 
 }

@@ -17,6 +17,67 @@
                     </div>
                 </form>
             </div>
+        
+            <div class="col-md-12 text-center mt-4">
+                <h2>Popular Downloads</h2>
+                <hr />
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Preview</th>
+                            <th>
+                                File Name
+                            </th>
+                            <th>
+                                Size
+                            </th>
+                            <th>
+                                Content Type
+                            </th>
+                            <th>Date Time</th>
+                            <th>Download Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.PopularDownloads)
+                        {
+                            <tr>
+                                <td>
+                                    @if (item.ContentType.ToLower().StartsWith("image"))
+                                    {
+                                        <img src="/Uploads/@item.FileName" width="70" height="70" class="img-thumbnail" alt="Alternate Text" />
+                                    }
+                                </td>
+                                <td>
+                                    <span>@item.OriginalFileName</span>
+                                </td>
+                                <td>
+                                    @{
+                                        var size = item.Size / 1024; //KB
+                                        if (size < 1024)
+                                        {
+                                            <span>@Math.Floor(size) Kb</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@(Math.Floor(size / 1024)) Mb</span>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    <span>@item.ContentType</span>
+                                </td>
+                                <td>
+                                    <span>@item.CreationDate</span>
+                                </td>
+                                <td>
+                                    <span>@item.DownloadCount</span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

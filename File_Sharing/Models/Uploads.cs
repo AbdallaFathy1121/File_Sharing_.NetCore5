@@ -20,6 +20,7 @@ namespace File_Sharing.Models
         public string ContentType { get; set; }
         public decimal Size { get; set; }
         public DateTime CreationDate { get; set; }
+        public long DownloadCount { get; set; }
         public string UserId { get; set; }
 
         // Relations

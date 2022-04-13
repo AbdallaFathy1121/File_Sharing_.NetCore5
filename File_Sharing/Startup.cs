@@ -1,4 +1,3 @@
-using File_Sharing.Bl;
 using File_Sharing.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -34,11 +33,6 @@ namespace File_Sharing
             // Use ConnectionString Of Database SqlServer
             services.AddDbContext<ApplicationDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-
-            // Use Dependency Injection
-            services.AddScoped<IUploadsService, CLsUploads>();
-
 
 
             // Add Identity

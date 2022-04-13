@@ -2,56 +2,70 @@
 
 @{
     ViewData["Title"] = "Index";
-    var imagesContentTypes = new[] { "image/jpeg", "image/png", "image/svg+xml" };
 }
 
 <h1>My Uploads</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
+<p class="text-right">
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>Preview</th>
             <th>
-                FileName
+                File Name
             </th>
             <th>
                 Size
             </th>
             <th>
-                ContentType
+                Content Type
             </th>
-            <th>DateTime</th>
+            <th>Date Time</th>
+            <th>Download Count</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @if (imagesContentTypes.Contains(item.ContentType))
-                {
-                    <img src="/Uploads/@item.FileName" width="120" height="120" class="img-thumbnail" alt="Alternate Text" />
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OriginalFileName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Size)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContentType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                @Html.ActionLink("Delete", "Delete", new {  id=item.UploadId  })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.ContentType.ToLower().StartsWith("image"))
+                    {
+                        <img src="/Uploads/@item.FileName" width="70" height="70" class="img-thumbnail" alt="Alternate Text" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OriginalFileName)
+                </td>
+                <td>
+                    @{
+                        var size = item.Size / 1024; //KB
+                        if (size < 1024)
+                        {
+                            <span>@Math.Floor(size) Kb</span>
+                        }
+                        else
+                        {
+                            <span>@(Math.Floor(size / 1024)) Mb</span>
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContentType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DownloadCount)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UploadId })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
