@@ -116,7 +116,7 @@ namespace File_Sharing.Controllers
             return View(model);
         }
 
-        // Action Delete Upload By Id
+        // Action Delete File By Id
         public async Task<IActionResult> Delete(string id)
         {
             var upload = await context.Uploads.FindAsync(id);

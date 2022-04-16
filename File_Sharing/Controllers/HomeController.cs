@@ -42,10 +42,20 @@ namespace File_Sharing.Controllers
             return View();
         }
 
+        // View Privacy Page
+        // Route => Home/Privacy
         public IActionResult Privacy()
         {
             return View();
         }
+
+        // View Info Page
+        // Route => Home/Info
+        public IActionResult Info()
+        {   
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
