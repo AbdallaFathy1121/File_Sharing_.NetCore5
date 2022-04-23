@@ -346,7 +346,6 @@ D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.TagH
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.TagHelpers.output.cache
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.RazorCoreGenerate.cache
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -435,5 +434,11 @@ D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Uploa
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Uploads\Index.cshtml.g.cs
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Uploads\Results.cshtml.g.cs
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Uploads\Browse.cshtml.g.cs
-D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.csproj.AssemblyReference.cache
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Home\Info.cshtml.g.cs
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Home\Contact.cshtml.g.cs
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Home\About.cshtml.g.cs
+D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\ar\File_Sharing.resources.dll
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Shared._Layout.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.csproj.GenerateResource.cache
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\ar\File_Sharing.resources.dll
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Shared._Layout.ar.resources

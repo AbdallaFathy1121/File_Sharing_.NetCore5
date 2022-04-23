@@ -320,6 +320,11 @@
         "runtime": {
           "File_Sharing.dll": {}
         },
+        "resources": {
+          "ar/File_Sharing.resources.dll": {
+            "locale": "ar"
+          }
+        },
         "compile": {
           "File_Sharing.dll": {}
         }

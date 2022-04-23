@@ -14,6 +14,7 @@ namespace File_Sharing.Models
 
         // Models
         public DbSet<Uploads> Uploads { get; set; }
+        public DbSet<Contacts> Contacts { get; set; }
 
 
 

@@ -1,5 +1,8 @@
 ﻿using File_Sharing.Models;
 using File_Sharing.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -7,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace File_Sharing.Controllers
@@ -19,6 +23,15 @@ namespace File_Sharing.Controllers
         {
             _logger = logger;
             context = _context;
+        }
+
+        // Get UserId
+        private string UserId
+        {
+            get
+            {
+                return User.FindFirstValue(ClaimTypes.NameIdentifier);
+            }
         }
 
         // View HomePage And List Of Top DownloadsCount
@@ -42,13 +55,6 @@ namespace File_Sharing.Controllers
             return View();
         }
 
-        // View Privacy Page
-        // Route => Home/Privacy
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         // View Info Page
         // Route => Home/Info
         public IActionResult Info()
@@ -56,11 +62,55 @@ namespace File_Sharing.Controllers
             return View();
         }
 
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        // View About Page
+        // Route => Home/About
+        public IActionResult About()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
+
+        // View Contact Page
+        // Route => Home/Contact
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        // Form Add Contact
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Contact(ContactViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await context.Contacts.AddAsync(new Contacts
+                {
+                    Name = model.Name,
+                    Email = model.Email,
+                    Subject = model.Subject,
+                    Message = model.Message,
+                    UserId = UserId
+                });
+                await context.SaveChangesAsync();
+                TempData["Message"] = "Message has been sent Successfully!..";
+                return RedirectToAction("Contact");
+            }
+            return View(model);
+        }
+
+
+        public IActionResult SetCulture(string lang)
+        {
+            if(!string.IsNullOrEmpty(lang))
+            {
+                Response.Cookies.Append(
+                    CookieRequestCultureProvider.DefaultCookieName,
+                    CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(lang)),
+                    new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+                );
+            }
+            return RedirectToAction("Index");
+        }
+        
     }
 }

@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Mvc.Localization 
+@inject IViewLocalizer Localizer
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -37,7 +40,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light mu-navbar">
                 <!-- Text based logo -->
-                <a class="navbar-brand mu-logo" asp-controller="Home" asp-action="Index"><span>File_Sharing</span></a>
+                <a class="navbar-brand mu-logo" asp-controller="Home" asp-action="Index"><span>File Sharing</span></a>
                 <!-- image based logo -->
                 <!-- <a class="navbar-brand mu-logo" href="index.html"><img src="assets/images/logo.png" alt="logo"></a> -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,20 +50,23 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav m-auto mu-navbar-nav">
                         <li class="nav-item @(Context.Request.Path.Value.ToLower() == "/" ? "active" : "")">
-                            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item @(Context.Request.Path.Value.ToLower() == "/home/privacy" ? "active" : "")">
-                            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
                         </li>
                         <li class="nav-item @(Context.Request.Path.Value.ToLower() == "/uploads/browse" ? "active" : "")">
-                            <a asp-area="" asp-controller="Uploads" asp-action="Browse">Browse</a>
+                            <a asp-area="" asp-controller="Uploads" asp-action="Browse">@Localizer["Browse"]</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item @(Context.Request.Path.Value.ToLower() == "/uploads" ? "active" : "")">
-                                <a asp-controller="Uploads" asp-action="Index">Uploads</a>
+                                <a asp-controller="Uploads" asp-action="Index">@Localizer["Uploads"]</a>
                             </li>
                         }
+                        <li class="nav-item @(Context.Request.Path.Value.ToLower() == "/home/about" ? "active" : "")">
+                            <a asp-area="" asp-controller="Home" asp-action="About">@Localizer["About"]</a>
+                        </li>
+                        <li class="nav-item @(Context.Request.Path.Value.ToLower() == "/home/contact" ? "active" : "")">
+                            <a asp-area="" asp-controller="Home" asp-action="Contact">@Localizer["Contact"]</a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav ml-auto mu-navbar-nav">
                         @if (User.Identity.IsAuthenticated)
@@ -69,16 +75,16 @@
                                 <a asp-controller="Home" asp-action="Info">@User.Identity.Name</a>
                             </li>
                             <li class="nav-item">
-                                <a asp-controller="Account" asp-action="LogOut">LogOut</a>
+                                <a asp-controller="Account" asp-action="LogOut">@Localizer["Logout"]</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item @(Context.Request.Path.Value.ToLower() == "/account/login" ? "active" : "")">
-                                <a asp-controller="Account" asp-action="Login">Login</a>
+                                <a asp-controller="Account" asp-action="Login">@Localizer["Login"]</a>
                             </li>
                             <li class="nav-item @(Context.Request.Path.Value.ToLower() == "/account/register" ? "active" : "")">
-                                <a asp-controller="Account" asp-action="Register">Register</a>
+                                <a asp-controller="Account" asp-action="Register">@Localizer["Register"]</a>
                             </li>
                         }
                     </ul>
@@ -103,7 +109,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="mu-single-footer">
-                            <img class="mu-footer-logo" src="~/assets/images/logo.png" alt="logo">
+                            <h2 class="mb-3">File Sharing</h2>
                             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus. </p>
                             <div class="mu-social-media">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
@@ -137,12 +143,15 @@
                     </div>
                     <div class="col-md-3">
                         <div class="mu-single-footer">
+                            <h3>Languages</h3>
+                            <ul class="mu-useful-links">
+                                <li><a href="/Home/SetCulture?Lang=ar-SA">العربية</a></li>
+                                <li><a href="/Home/SetCulture?Lang=en-US">English</a></li>
+                            </ul>
                             <h3>Useful link</h3>
                             <ul class="mu-useful-links">
                                 <li><a href="#">Help Center</a></li>
                                 <li><a href="#">Download Center</a></li>
-                                <li><a href="#">User Account</a></li>
-                                <li><a href="#">Support Forum</a></li>
                             </ul>
                         </div>
                     </div>

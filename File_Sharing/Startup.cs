@@ -27,9 +27,13 @@ namespace File_Sharing
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddViewLocalization(op =>
+                {
+                    op.ResourcesPath = "Resources";
+                });
 
-                
+
             // Use ConnectionString Of Database SqlServer
             services.AddDbContext<ApplicationDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -44,6 +48,11 @@ namespace File_Sharing
                 option.User.RequireUniqueEmail = true;
 
             }).AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+            // Localization
+            services.AddLocalization();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +71,14 @@ namespace File_Sharing
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+
+            var supportedCulture = new[] { "ar-SA", "en-US" };
+            app.UseRequestLocalization(r =>
+            {
+                r.AddSupportedUICultures(supportedCulture);
+                r.AddSupportedCultures(supportedCulture);
+                r.SetDefaultCulture("en-US");
+            });
 
             app.UseAuthentication();
             app.UseAuthorization();

@@ -16,3 +16,7 @@
     .main-content h6 {
         color: #0091ea;
     }
+
+.mu-navbar-nav li a {
+    padding: 9px 12px !important;
+}
