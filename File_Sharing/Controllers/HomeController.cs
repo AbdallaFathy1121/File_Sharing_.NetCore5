@@ -99,7 +99,8 @@ namespace File_Sharing.Controllers
         }
 
 
-        public IActionResult SetCulture(string lang)
+        // Switch Between Cultures
+        public IActionResult SetCulture(string lang, string returnUrl)
         {
             if(!string.IsNullOrEmpty(lang))
             {
@@ -109,7 +110,7 @@ namespace File_Sharing.Controllers
                     new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
                 );
             }
-            return RedirectToAction("Index");
+            return Redirect(returnUrl);
         }
         
     }

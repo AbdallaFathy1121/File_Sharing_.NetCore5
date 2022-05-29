@@ -140,7 +140,6 @@ kbd {
 	background-color: #ddd;
 	padding: 4px 6px;
 	border-radius: 2px;
-	color: ;
 }
 
 address {
@@ -329,7 +328,7 @@ a:focus,
 }
 
 .mu-navbar .mu-logo {
-	color: #fff;
+	color: #fff !important;
 	font-weight: 600;
 	font-size: 36px;
 }
@@ -1177,7 +1176,7 @@ a:focus,
 	padding: 50px 0 40px;
 }
 
-.mu-standard-pricing .mu-single-pricebox {;
+.mu-standard-pricing .mu-single-pricebox {
 	padding: 5px 0 40px;
 }
 

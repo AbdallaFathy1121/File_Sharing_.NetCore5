@@ -1,10 +1,15 @@
 ﻿@model IEnumerable<UploadViewModel>
+@using Microsoft.AspNetCore.Localization
+@inject IViewLocalizer localizer
 
 @{
-    ViewData["Title"] = "Browse";
+    var reqCulture = Context.Features.Get<IRequestCultureFeature>();
+    var culture = reqCulture.RequestCulture.Culture.Name;
+    bool isArabic = culture == "ar-SA";
+    ViewData["Title"] = localizer["Title"];
 }
 
-<h1>Browse Uploads</h1>
+<h1>@localizer["Title"]</h1>
 <hr />
 <div class="container">
     <div class="row">
@@ -15,7 +20,7 @@
                     <div class="col-md-2">
                         @if (item.ContentType.ToLower().StartsWith("image"))
                         {
-                            <img class="w-100 h-100" src="/Uploads/@item.FileName" alt="...">
+                            <img class="lazy w-100 h-100" data-src="/Uploads/@item.FileName">
                         }
                     </div>
                     <div class="col-md-10">
@@ -25,7 +30,7 @@
                                     <h5 class="card-title">@item.OriginalFileName</h5>
                                 </div>
                                 <div class="col-3">
-                                    <strong>Size: </strong>
+                                    <strong>@localizer["Size"]: </strong>
                                     @{
                                         var size = item.Size / 1024; //KB
                                         if (size < 1024)
@@ -39,19 +44,31 @@
                                     }
                                 </div>
                                 <div class="col-3">
-                                    <strong>Downloads: @item.DownloadCount</strong>
+                                    <strong>@localizer["Downloads"]: @item.DownloadCount</strong>
                                 </div>
                             </div>
                             <p class="card-text"><small class="text-muted">@item.CreationDate</small></p>
                             <br />
 
-                            <div class="text-right">
-                                <a asp-controller="Uploads" asp-action="Download" asp-route-id="@item.FileName" class="btn btn-outline-primary">Download</a>
+                            <div class="@(isArabic? "text-left": "text-right")">
+                                <a asp-controller="Uploads" asp-action="Download" asp-route-id="@item.FileName" class="btn btn-outline-primary">@localizer["Download"]</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         }
+    </div>
+    <div class="col-12 text-center mt-5 mb-5">
+        <div>
+            @if (ViewBag.CurrentPage - 1 > 0)
+            {
+                <a href="/Uploads/Browse/?RequiredPage=@(ViewBag.CurrentPage - 1)" class="btn btn-outline-primary btn-lg">Prev</a>
+            }
+            @if (ViewBag.CurrentPage + 1 <= ViewBag.PagesCount)
+            {
+                <a href="/Uploads/Browse/?RequiredPage=@(ViewBag.CurrentPage + 1)" class="btn btn-outline-primary btn-lg">Next</a>
+            }
+        </div>
     </div>
 </div>

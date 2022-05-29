@@ -442,3 +442,17 @@ D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Reso
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.csproj.GenerateResource.cache
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\ar\File_Sharing.resources.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Shared._Layout.ar.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Home.Index.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Home.Index.ar.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Account.Login.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Account.Login.ar.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Account.Register.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Account.Register.ar.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.SharedResource.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.SharedResource.ar.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Home.Contact.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Home.Contact.ar.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Uploads.Browse.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Uploads.Browse.ar.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\bundleconfig.json
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.csproj.AssemblyReference.cache

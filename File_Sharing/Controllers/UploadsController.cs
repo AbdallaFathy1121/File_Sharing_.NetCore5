@@ -34,6 +34,33 @@ namespace File_Sharing.Controllers
             } 
         }
 
+        // Get PagedData To Create Pagination
+        private async Task<List<UploadViewModel>> GetPagedData(IQueryable<UploadViewModel> result, int requiredPage = 1)
+        {
+            const int pageSize = 3;
+
+            decimal rowsCount = await result.CountAsync();
+            var pagesCount = Math.Ceiling(rowsCount / pageSize);
+
+            if(requiredPage <= 0)
+                requiredPage = 1;
+            if(requiredPage > pagesCount)
+                requiredPage = 1;
+
+
+            int skipCount = (requiredPage - 1) * pageSize;
+                       
+            var pagedData = await result 
+                .Skip(skipCount)
+                .Take(pageSize)
+                .ToListAsync();
+
+            ViewBag.CurrentPage = requiredPage;
+            ViewBag.PagesCount = pagesCount;
+
+            return pagedData;
+        }
+
         // View Page My Uploads
         // Route => Uploads/Index
         public IActionResult Index()
@@ -57,22 +84,24 @@ namespace File_Sharing.Controllers
         // View Page All Uploads
         // Route => Uploads/Browse
         [AllowAnonymous]
-        public async Task<IActionResult> Browse()
+        public async Task<IActionResult> Browse(int requiredPage = 1)
         {
-            var result = await context.Uploads
+            var result = context.Uploads
                 .OrderByDescending(s => s.DownloadCount)
                 .Select(a => new UploadViewModel
                 {
-                    UploadId = a.UploadId,
-                    OriginalFileName = a.OriginalFileName,
-                    FileName = a.FileName,
-                    ContentType = a.ContentType,
-                    Size = a.Size,
-                    CreationDate = a.CreationDate,
-                    DownloadCount = a.DownloadCount
-                }).ToListAsync();
+                      UploadId = a.UploadId,
+                      OriginalFileName = a.OriginalFileName,
+                      FileName = a.FileName,
+                      ContentType = a.ContentType,
+                      Size = a.Size,
+                      CreationDate = a.CreationDate,
+                      DownloadCount = a.DownloadCount
+                });
 
-            return View(result);
+            var model = await GetPagedData(result, requiredPage);
+
+            return View(model);
         }
 
         // View Page Create Upload
@@ -134,9 +163,10 @@ namespace File_Sharing.Controllers
         // Form Search Uploads By File Name
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Results(string term)
+        public async Task<IActionResult> Results(string term, int requiredPage = 1)
         {
-            var result = await context.Uploads.Where(a => a.OriginalFileName.Contains(term))
+            var result = await context.Uploads
+                .Where(a => a.OriginalFileName.Contains(term))
                 .OrderByDescending(s => s.DownloadCount)
                 .Select(a => new UploadViewModel
                 {
@@ -146,7 +176,9 @@ namespace File_Sharing.Controllers
                     Size = a.Size,
                     CreationDate = a.CreationDate,
                     DownloadCount = a.DownloadCount
-                }).ToListAsync();
+                })
+                .Take(10)
+                .ToListAsync();
 
             return View(result);
         }

@@ -15,7 +15,7 @@
                     <div class="col-md-2">
                         @if (item.ContentType.ToLower().StartsWith("image"))
                         {
-                            <img class="w-100 h-100" src="/Uploads/@item.FileName" alt="...">
+                            <img class="lazy w-100 h-100" data-src="/Uploads/@item.FileName" alt="...">
                         }
                     </div>
                     <div class="col-md-10">

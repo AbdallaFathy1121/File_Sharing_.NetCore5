@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "UPgbBEjZhe61oZpDk7vUwSYxDKvB5Uqo8zxntweo3Zh3mmMjXeO+6Z5l5F18UMY+AoNReGXXn0EjITxUoFJY1A==",
+  "dgSpecHash": "/1ridjwiv28vSJXgDKv+5+y4f4VX/nz6vLbiaN3OGTzKmPfo7CipV9+j2xJsvSnIN+kOFrpNLs2BlQqycERk5w==",
   "success": true,
   "projectFilePath": "D:\\Asp.net Projects\\File_Sharing\\File_Sharing\\File_Sharing.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Blu-Ray\\.nuget\\packages\\buildbundlerminifier\\3.2.449\\buildbundlerminifier.3.2.449.nupkg.sha512",
     "C:\\Users\\Blu-Ray\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Blu-Ray\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.15\\microsoft.aspnetcore.cryptography.internal.5.0.15.nupkg.sha512",
     "C:\\Users\\Blu-Ray\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.15\\microsoft.aspnetcore.cryptography.keyderivation.5.0.15.nupkg.sha512",

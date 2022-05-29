@@ -1,41 +1,42 @@
-﻿@{
+﻿@inject IViewLocalizer localizer
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1>Search Files</h1>
+    <h1>@localizer["Header"]</h1>
     <br />
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <form asp-controller="Uploads" asp-action="Results">
                     <div class="input-group mb-3 input-group-lg">
-                        <input type="text" name="Term" class="form-control" placeholder="File Name" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" name="Term" class="form-control" placeholder="@localizer["File.Name"]" aria-label="Recipient's username" aria-describedby="button-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-primary" type="submit" id="button-addon2">Search</button>
+                            <button class="btn btn-outline-primary" type="submit" id="button-addon2">@localizer["Button.Search"]</button>
                         </div>
                     </div>
                 </form>
             </div>
         
             <div class="col-md-12 text-center mt-4">
-                <h2>Popular Downloads</h2>
+                <h2>@localizer["Popular"]</h2>
                 <hr />
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Preview</th>
+                            <th>@localizer["File"]</th>
                             <th>
-                                File Name
+                                @localizer["File.Name"]
                             </th>
                             <th>
-                                Size
+                                @localizer["File.Size"]
                             </th>
                             <th>
-                                Content Type
+                                @localizer["Content.Type"]
                             </th>
-                            <th>Date Time</th>
-                            <th>Download Count</th>
+                            <th>@localizer["Date.Time"]</th>
+                            <th>@localizer["Download.Count"]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,7 +46,7 @@
                                 <td>
                                     @if (item.ContentType.ToLower().StartsWith("image"))
                                     {
-                                        <img src="/Uploads/@item.FileName" width="70" height="70" class="img-thumbnail" alt="Alternate Text" />
+                                        <img class="lazy img-thumbnail" data-src="/Uploads/@item.FileName" width="70" height="70" alt="Alternate Text" />
                                     }
                                 </td>
                                 <td>

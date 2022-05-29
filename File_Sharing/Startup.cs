@@ -27,6 +27,8 @@ namespace File_Sharing
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // Add Resources File
             services.AddControllersWithViews()
                 .AddViewLocalization(op =>
                 {
@@ -72,6 +74,7 @@ namespace File_Sharing
             app.UseStaticFiles();
             app.UseRouting();
 
+            // Use Cultures
             var supportedCulture = new[] { "ar-SA", "en-US" };
             app.UseRequestLocalization(r =>
             {

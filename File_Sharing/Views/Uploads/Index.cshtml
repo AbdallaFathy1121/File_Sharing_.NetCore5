@@ -34,7 +34,7 @@
                 <td>
                     @if (item.ContentType.ToLower().StartsWith("image"))
                     {
-                        <img src="/Uploads/@item.FileName" width="70" height="70" class="img-thumbnail" alt="Alternate Text" />
+                        <img class="lazy img-thumbnail" data-src="/Uploads/@item.FileName" width="70" height="70" alt="Alternate Text" />
                     }
                 </td>
                 <td>
