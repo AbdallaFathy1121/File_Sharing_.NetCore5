@@ -1,4 +1,5 @@
 using File_Sharing.Models;
+using File_Sharing.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,7 +38,7 @@ namespace File_Sharing
 
 
             // Use ConnectionString Of Database SqlServer
-            services.AddDbContext<ApplicationDbContext>(options => 
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 
@@ -48,12 +49,36 @@ namespace File_Sharing
                 option.Password.RequireNonAlphanumeric = false;
                 option.Password.RequireUppercase = true;
                 option.User.RequireUniqueEmail = true;
-
             }).AddEntityFrameworkStores<ApplicationDbContext>();
 
+            // Token Provider
+            services.Configure<DataProtectionTokenProviderOptions>(options =>
+            {
+                options.TokenLifespan = TimeSpan.FromHours(3);
+            });
 
             // Localization
             services.AddLocalization();
+
+            // Dependece Injection
+            services.AddTransient<IUploadService, UploadService>();
+
+            // Use AutoMapper
+            services.AddAutoMapper(typeof(Startup));
+
+            // Login Provider (Google, Facebook)
+            services.AddAuthentication()
+                .AddFacebook(options =>
+                {
+                    options.AppId = Configuration["Authentication:Facebook:AppId"];
+                    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                })
+                .AddGoogle(options =>
+                {
+                    options.ClientId = Configuration["Authentication:Google:ClientId"];
+                    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                });
+
 
         }
 
@@ -67,7 +92,6 @@ namespace File_Sharing
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -89,9 +113,15 @@ namespace File_Sharing
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                   name: "areas",
+                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+             
         }
     }
 }

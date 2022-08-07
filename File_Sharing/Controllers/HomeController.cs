@@ -55,13 +55,6 @@ namespace File_Sharing.Controllers
             return View();
         }
 
-        // View Info Page
-        // Route => Home/Info
-        public IActionResult Info()
-        {   
-            return View();
-        }
-
         // View About Page
         // Route => Home/About
         public IActionResult About()

@@ -96,7 +96,6 @@ D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Ex
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Extensions.Configuration.KeyPerFile.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Extensions.Configuration.UserSecrets.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Extensions.Configuration.Xml.dll
-D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Extensions.Diagnostics.HealthChecks.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Extensions.FileProviders.Abstractions.dll
@@ -120,8 +119,6 @@ D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Ex
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Extensions.ObjectPool.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.DataAnnotations.dll
-D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.dll
-D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Extensions.Primitives.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Extensions.WebEncoders.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.JSInterop.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\Microsoft.Net.Http.Headers.dll
@@ -220,7 +217,6 @@ D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\System.Refle
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\System.Resources.Reader.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\System.Resources.ResourceManager.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\System.Resources.Writer.dll
-D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\System.Runtime.CompilerServices.Unsafe.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\System.Runtime.CompilerServices.VisualC.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\System.Runtime.dll
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\refs\System.Runtime.Extensions.dll
@@ -434,7 +430,6 @@ D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Uploa
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Uploads\Index.cshtml.g.cs
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Uploads\Results.cshtml.g.cs
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Uploads\Browse.cshtml.g.cs
-D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Home\Info.cshtml.g.cs
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Home\Contact.cshtml.g.cs
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Home\About.cshtml.g.cs
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\ar\File_Sharing.resources.dll
@@ -455,4 +450,21 @@ D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Reso
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Uploads.Browse.resources
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Uploads.Browse.ar.resources
 D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\bundleconfig.json
+D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\AutoMapper.dll
+D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Google.dll
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Account.Info.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.Resources.Views.Account.Info.ar.resources
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Account\Info.cshtml.g.cs
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Views\Account\_AddPasswordPartial.cshtml.g.cs
 D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\File_Sharing.csproj.AssemblyReference.cache
+D:\Asp.net Projects\File_Sharing\File_Sharing\bin\Debug\net5.0\QuickMailer.dll
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
+D:\Asp.net Projects\File_Sharing\File_Sharing\obj\Debug\net5.0\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs

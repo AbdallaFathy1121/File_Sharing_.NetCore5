@@ -1,4 +1,5 @@
 ﻿using File_Sharing.Models;
+using File_Sharing.Services;
 using File_Sharing.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -19,11 +20,11 @@ namespace File_Sharing.Controllers
     {
         // Dependency Injection
         private readonly IWebHostEnvironment env;
-        private readonly ApplicationDbContext context;
-        public UploadsController(IWebHostEnvironment env, ApplicationDbContext context)
+        private readonly IUploadService uploadService;
+        public UploadsController(IWebHostEnvironment env, IUploadService uploadService)
         {
             this.env = env;
-            this.context = context;
+            this.uploadService = uploadService;
         }
 
         // Get UserId
@@ -65,20 +66,7 @@ namespace File_Sharing.Controllers
         // Route => Uploads/Index
         public IActionResult Index()
         {
-            var result = context.Uploads.Where(a => a.UserId == UserId)
-                .OrderByDescending(s => s.DownloadCount)
-                .Select(a => new UploadViewModel
-                {
-                    UploadId = a.UploadId,
-                    OriginalFileName = a.OriginalFileName,
-                    FileName = a.FileName,
-                    ContentType = a.ContentType,
-                    Size = a.Size,
-                    CreationDate = a.CreationDate,
-                    DownloadCount = a.DownloadCount
-                });
-
-            return View(result);
+            return View(uploadService.GetByUserId(UserId));
         }
 
         // View Page All Uploads
@@ -86,18 +74,7 @@ namespace File_Sharing.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Browse(int requiredPage = 1)
         {
-            var result = context.Uploads
-                .OrderByDescending(s => s.DownloadCount)
-                .Select(a => new UploadViewModel
-                {
-                      UploadId = a.UploadId,
-                      OriginalFileName = a.OriginalFileName,
-                      FileName = a.FileName,
-                      ContentType = a.ContentType,
-                      Size = a.Size,
-                      CreationDate = a.CreationDate,
-                      DownloadCount = a.DownloadCount
-                });
+            var result = uploadService.GetAll();
 
             var model = await GetPagedData(result, requiredPage);
 
@@ -113,7 +90,7 @@ namespace File_Sharing.Controllers
 
         // Form Add New Upload
         [HttpPost]
-        public async Task<IActionResult> Create(InputUploadViewModel model)
+        public async Task<IActionResult> Create(InputFile model)
         {
             if(ModelState.IsValid)
             {
@@ -129,16 +106,14 @@ namespace File_Sharing.Controllers
                     await model.File.CopyToAsync(fs);
                 }
 
-                await context.Uploads.AddAsync(new Uploads
+                await uploadService.Create(new InputUpload
                 {
                     OriginalFileName = _fileName,
                     FileName = fileName,
                     ContentType = model.File.ContentType,
                     Size = model.File.Length,
-                    CreationDate = DateTime.Now,
                     UserId = UserId
                 });
-                await context.SaveChangesAsync();    
 
                 return RedirectToAction("Index");
             }
@@ -148,13 +123,12 @@ namespace File_Sharing.Controllers
         // Action Delete File By Id
         public async Task<IActionResult> Delete(string id)
         {
-            var upload = await context.Uploads.FindAsync(id);
+            var upload = uploadService.Find(id, UserId);
             
-            if (upload == null || upload.UserId != UserId)
+            if (upload == null )
                 return NotFound();
 
-            context.Uploads.Remove(upload);
-            await context.SaveChangesAsync();
+            await uploadService.Delete(id, UserId);
 
             return RedirectToAction("Index");
 
@@ -163,37 +137,21 @@ namespace File_Sharing.Controllers
         // Form Search Uploads By File Name
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Results(string term, int requiredPage = 1)
+        public IActionResult Results(string term)
         {
-            var result = await context.Uploads
-                .Where(a => a.OriginalFileName.Contains(term))
-                .OrderByDescending(s => s.DownloadCount)
-                .Select(a => new UploadViewModel
-                {
-                    OriginalFileName = a.OriginalFileName,
-                    FileName = a.FileName,
-                    ContentType = a.ContentType,
-                    Size = a.Size,
-                    CreationDate = a.CreationDate,
-                    DownloadCount = a.DownloadCount
-                })
-                .Take(10)
-                .ToListAsync();
-
-            return View(result);
+            return View(uploadService.Search(term));
         }
         
         // Action Download File
         public async Task<IActionResult> Download(string id)
         {
-            var selectedFile = await context.Uploads.FirstOrDefaultAsync(a => a.FileName == id);
+            var selectedFile = await uploadService.Find(id);
 
             if (selectedFile == null)
                 return NotFound();
 
-            selectedFile.DownloadCount++;
-            context.Update(selectedFile);
-            await context.SaveChangesAsync();
+
+            await uploadService.IncreamentDownloadCount(id);
 
             var path = "~/Uploads/" + selectedFile.FileName;
 

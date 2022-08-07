@@ -1,0 +1,66 @@
+﻿@model ChangePasswordViewModel
+@inject IViewLocalizer localizer
+
+@{
+    ViewData["Title"] = "Info";
+}
+
+@if (!ViewContext.ModelState.IsValid)
+{
+    <div asp-validation-summary="ModelOnly" class="text-center alert alert-danger list-unstyled"></div>
+}
+
+<div class="text-center mb-5">
+    <h2>Info</h2>
+    <hr />
+
+    <p>
+        <strong>Email: <span>@User.Identity.Name</span></strong>
+    </p>
+</div>
+
+@if (TempData["changePass"] != null)
+{
+    <h2 class="text-center">Manage</h2>
+    <hr />
+    <div class="mu-contact-content">
+        <div class="row mb-5">
+
+            <div class="col-md-12">
+                <div class="mu-contact-form-area">
+                    <div id="form-messages"></div>
+                    <form class="mu-contact-form" asp-controller="Account" asp-action="ChangePassword">
+
+                        <div class="form-group">
+                            <span class="fa fa-user mu-contact-icon"></span>
+                            <input asp-for="CurrentPassword" type="password" class="form-control" placeholder="@localizer["CurrentPassword"]">
+                            <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="fa fa-user mu-contact-icon"></span>
+                            <input asp-for="NewPassword" type="password" class="form-control" placeholder="@localizer["NewPassword"]">
+                            <span asp-validation-for="NewPassword" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="fa fa-user mu-contact-icon"></span>
+                            <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="@localizer["ConfirmPassword"]">
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="mu-send-msg-btn"><span>@localizer["Submit"]</span></button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+else
+{
+    <partial name="_AddPasswordPartial" model="new AddPasswordViewModel()" />
+}
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -61,6 +61,24 @@ namespace File_Sharing.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Password Success.
+        /// </summary>
+        public static string AddPasswordMessage {
+            get {
+                return ResourceManager.GetString("AddPasswordMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Password Success.
+        /// </summary>
+        public static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Password dosent math with Password.
         /// </summary>
         public static string Compare {
@@ -75,6 +93,15 @@ namespace File_Sharing.Resources {
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Should verify your Email , to Login.
+        /// </summary>
+        public static string EmailConfirm {
+            get {
+                return ResourceManager.GetString("EmailConfirm", resourceCulture);
             }
         }
         

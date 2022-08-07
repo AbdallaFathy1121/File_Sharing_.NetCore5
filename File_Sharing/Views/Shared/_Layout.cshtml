@@ -90,12 +90,15 @@
                         <li class="nav-item @(Context.Request.Path.Value.ToLower() == "/home/contact" ? "active" : "")">
                             <a asp-area="" asp-controller="Home" asp-action="Contact">@Localizer["Contact"]</a>
                         </li>
+                        <li class="nav-item @(Context.Request.Path.Value.ToLower() == "/Admin/" ? "active" : "")">
+                            <a asp-area="Admin" asp-controller="Home" asp-action="Index">@Localizer["Dashboard"]</a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav ml-auto mu-navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item @(Context.Request.Path.Value.ToLower() == "/account/info" ? "active" : "")">
-                                <a asp-controller="Home" asp-action="Info">@User.Identity.Name</a>
+                                <a asp-controller="Account" asp-action="Info">@User.Identity.Name</a>
                             </li>
                             <li class="nav-item">
                                 <a asp-controller="Account" asp-action="LogOut">@Localizer["Logout"]</a>
@@ -120,6 +123,20 @@
     <main>
         <div class="container">
             <div class="main-content">
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success text-center">
+                        <strong>@TempData["Success"]</strong>
+                    </div>
+                }
+                @if (TempData["Warning"] != null)
+                {
+                    <div class="alert alert-warning text-center">
+                        <strong>@TempData["Warning"]</strong>
+                    </div>
+                }
+
                 @RenderBody()
             </div>
         </div>

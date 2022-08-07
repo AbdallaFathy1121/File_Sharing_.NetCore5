@@ -10,8 +10,11 @@ namespace File_Sharing.Models
     public class Uploads
     {
         // Constructor => Generate UploadId by Guid
-        public Uploads() => UploadId = Guid.NewGuid().ToString();
-
+        public Uploads()
+        {
+            UploadId = Guid.NewGuid().ToString();
+            CreationDate = DateTime.Now;
+        }
         // Columns
         [Key]
         public string UploadId { get; set; }

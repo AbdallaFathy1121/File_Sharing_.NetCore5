@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddPasswordMessage" xml:space="preserve">
+    <value>Add Password Success</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password Success</value>
+  </data>
   <data name="Compare" xml:space="preserve">
     <value>Confirm Password dosent math with Password</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>You Should Type Email Address</value>
+  </data>
+  <data name="EmailConfirm" xml:space="preserve">
+    <value>Should verify your Email , to Login</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>Email</value>

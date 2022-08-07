@@ -35,4 +35,29 @@ namespace File_Sharing.ViewModels
         public string ConfirmPassword { get; set; }
     }
 
+    public class ChangePasswordViewModel
+    {
+        [Required]
+        public string CurrentPassword { get; set; }
+        [Required]
+        public string NewPassword { get; set; }
+        [Compare("NewPassword")]
+        public string ConfirmPassword { get; set; }
+    }
+
+    public class AddPasswordViewModel
+    {
+        [Required]
+        public string Password { get; set; }
+    }
+
+    public class ConfirmEmailViewModel
+    {
+        [Required]
+        public string Token { get; set; }
+    
+        [Required]
+        public string UserId { get; set; }
+    }
+
 }

@@ -51,7 +51,7 @@
                             <br />
 
                             <div class="@(isArabic? "text-left": "text-right")">
-                                <a asp-controller="Uploads" asp-action="Download" asp-route-id="@item.FileName" class="btn btn-outline-primary">@localizer["Download"]</a>
+                                <a asp-controller="Uploads" asp-action="Download" asp-route-id="@item.UploadId" class="btn btn-outline-primary">@localizer["Download"]</a>
                             </div>
                         </div>
                     </div>
