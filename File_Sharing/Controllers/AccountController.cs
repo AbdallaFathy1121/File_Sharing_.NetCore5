@@ -42,13 +42,26 @@ namespace File_Sharing.Controllers
         {
             if(ModelState.IsValid)
             {
-                var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, true);
-                if (result.Succeeded)
+                var existedUser = await userManager.FindByEmailAsync(model.Email);
+                if (existedUser == null)
                 {
-                    if (!string.IsNullOrEmpty(returnUrl))
-                        return LocalRedirect(returnUrl);
-                    else
-                        return RedirectToAction("Create", "Uploads");
+                    TempData["Error"] = "Invalid Email or Password";
+                    return View(model);
+                }
+                if (existedUser.LockoutEnabled == true)
+                {
+                    var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, true);
+                    if (result.Succeeded)
+                    {
+                        if (!string.IsNullOrEmpty(returnUrl))
+                            return LocalRedirect(returnUrl);
+                        else
+                            return RedirectToAction("Create", "Uploads");
+                    }
+                }
+                else
+                {
+                    TempData["Error"] = "This Account Has been Blocked";
                 }
             }
             return View(model);
@@ -72,12 +85,12 @@ namespace File_Sharing.Controllers
                 var user = new IdentityUser
                 {
                     UserName = model.Email,
-                    Email = model.Email
+                    Email = model.Email,
                 };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await signInManager.SignInAsync(user, false);
+                    await signInManager.SignInAsync(user, true);
                     return RedirectToAction("Create", "Uploads");
                 }
                 foreach (var error in result.Errors)
@@ -143,6 +156,21 @@ namespace File_Sharing.Controllers
                     }
                 }
                 
+                return RedirectToAction("Login");
+            }
+
+            var emailUser = info.Principal.FindFirstValue(ClaimTypes.Email);
+
+            var existedUser = await userManager.FindByEmailAsync(emailUser);
+            if (existedUser == null)
+            {
+                TempData["Error"] = "Invalid Email or Password";
+                return RedirectToAction("Login");
+            }
+            if(existedUser.LockoutEnabled == false)
+            {
+                await signInManager.SignOutAsync();
+                TempData["Error"] = "This Account Has been Blocked";
                 return RedirectToAction("Login");
             }
 

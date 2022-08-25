@@ -10,12 +10,11 @@ namespace File_Sharing.Models
 {
     public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
-        public ApplicationDbContext(DbContextOptions options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         // Models
-        public DbSet<Uploads> Uploads { get; set; }
-        public DbSet<Contacts> Contacts { get; set; }
-
+        public virtual DbSet<Uploads> Uploads { get; set; }
+        public virtual DbSet<Contacts> Contacts { get; set; }
 
 
     }

@@ -82,10 +82,11 @@ namespace File_Sharing.Controllers
                     Email = model.Email,
                     Subject = model.Subject,
                     Message = model.Message,
-                    UserId = UserId
+                    UserId = UserId,
+                    SentDate = DateTime.Now
                 });
                 await context.SaveChangesAsync();
-                TempData["Message"] = "Message has been sent Successfully!..";
+                TempData["Success"] = "Message has been sent Successfully!..";
                 return RedirectToAction("Contact");
             }
             return View(model);

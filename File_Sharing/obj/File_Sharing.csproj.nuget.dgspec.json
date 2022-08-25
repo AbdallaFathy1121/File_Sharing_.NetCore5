@@ -51,6 +51,10 @@
               "target": "Package",
               "version": "[3.2.449, )"
             },
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.96.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.Facebook": {
               "target": "Package",
               "version": "[5.0.17, )"

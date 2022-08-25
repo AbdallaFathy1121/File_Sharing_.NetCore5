@@ -69,7 +69,7 @@
                                     <span>@item.ContentType</span>
                                 </td>
                                 <td>
-                                    <span>@item.CreationDate</span>
+                                    <span class="moment-date">@item.CreationDate.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</span>
                                 </td>
                                 <td>
                                     <span>@item.DownloadCount</span>

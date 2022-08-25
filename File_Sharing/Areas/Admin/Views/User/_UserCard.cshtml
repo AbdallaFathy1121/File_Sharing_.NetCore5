@@ -1,0 +1,32 @@
+﻿@model IdentityUser
+
+<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+    <div class="card bg-light d-flex flex-fill">
+        <div class="card-header text-muted border-bottom-0">
+            Digital Strategist
+        </div>
+        <div class="card-body pt-0">
+            <div class="row">
+                <div class="col-7">
+                    <h2 class="lead"><b>@Model.Email</b></h2>
+                </div>
+                <div class="col-5 text-center">
+                    <img src="~/Admin/dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="text-right">
+                <a href="#" class="btn btn-sm bg-teal">
+                    <i class="fas fa-comments"></i>
+                </a>
+                <button form="block-form-@Model.Id" type="submit" class="btn btn-sm @(Model.LockoutEnabled? "btn-primary" : "btn-danger")">
+                    <i class="fas @(Model.LockoutEnabled? "fa-user-lock" : "fa-user")"></i> @(Model.LockoutEnabled? "Block User" : "Unblock User")
+                </button>
+                <form id="block-form-@Model.Id" asp-area="Admin" asp-controller="User" asp-action="Block">
+                    <input type="hidden" name="userId" value="@Model.Id" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

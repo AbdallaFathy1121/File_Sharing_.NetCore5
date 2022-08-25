@@ -1,3 +1,4 @@
+using File_Sharing.Areas.Admin;
 using File_Sharing.Models;
 using File_Sharing.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -42,6 +43,12 @@ namespace File_Sharing
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 
+            services.Configure<SecurityStampValidatorOptions>(options =>
+            {
+                // enables immediate logout, after updating the user's stat.
+                options.ValidationInterval = TimeSpan.Zero;
+            });
+
             // Add Identity
             services.AddIdentity<IdentityUser, IdentityRole>(option =>
             {
@@ -50,12 +57,6 @@ namespace File_Sharing
                 option.Password.RequireUppercase = true;
                 option.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<ApplicationDbContext>();
-
-            // Token Provider
-            services.Configure<DataProtectionTokenProviderOptions>(options =>
-            {
-                options.TokenLifespan = TimeSpan.FromHours(3);
-            });
 
             // Localization
             services.AddLocalization();
@@ -79,6 +80,8 @@ namespace File_Sharing
                     options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
                 });
 
+            // Use Extension Method in AdminStartup
+            services.AddAdminServices();
 
         }
 

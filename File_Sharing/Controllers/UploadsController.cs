@@ -123,7 +123,7 @@ namespace File_Sharing.Controllers
         // Action Delete File By Id
         public async Task<IActionResult> Delete(string id)
         {
-            var upload = uploadService.Find(id, UserId);
+            var upload = await uploadService.Find(id, UserId);
             
             if (upload == null )
                 return NotFound();

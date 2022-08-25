@@ -18,4 +18,15 @@ namespace File_Sharing
             CreateMap<Models.Uploads, ViewModels.UploadViewModel>();
         }
     }
+
+
+    public class ContactUsProfile : Profile
+    {
+        public ContactUsProfile()
+        {
+            CreateMap<Models.Contacts, Areas.Admin.ViewModels.ContactUsViewModel>();
+        }
+    }
+
+
 }

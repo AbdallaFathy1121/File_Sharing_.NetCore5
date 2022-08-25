@@ -47,7 +47,7 @@
                                     <strong>@localizer["Downloads"]: @item.DownloadCount</strong>
                                 </div>
                             </div>
-                            <p class="card-text"><small class="text-muted">@item.CreationDate</small></p>
+                            <p class="card-text"><small class="text-muted moment-date">@item.CreationDate.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</small></p>
                             <br />
 
                             <div class="@(isArabic? "text-left": "text-right")">
