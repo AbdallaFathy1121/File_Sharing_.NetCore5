@@ -1,0 +1,57 @@
+﻿@model IEnumerable<UploadViewModel>
+
+@{
+    ViewData["Title"] = "Results";
+}
+
+<h1>Search Results</h1>
+<hr />
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="card mb-3 col-12 pl-0">
+                <div class="row no-gutters">
+                    <div class="col-md-2">
+                        @if (item.ContentType.ToLower().StartsWith("image"))
+                        {
+                            <img class="lazy w-100 h-100" data-src="/Uploads/@item.FileName" alt="...">
+                        }
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 class="card-title">@item.OriginalFileName</h5>
+                                </div>
+                                <div class="col-3">
+                                    <strong>Size: </strong>
+                                    @{
+                                        var size = item.Size / 1024; //KB
+                                        if (size < 1024)
+                                        {
+                                            <span>@Math.Floor(size) Kb</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@(Math.Floor(size / 1024)) Mb</span>
+                                        }
+                                    }
+                                </div>
+                                <div class="col-3">
+                                    <strong>Downloads: @item.DownloadCount</strong>
+                                </div>
+                            </div>
+                            <p class="card-text"><small class="text-muted moment-date">@item.CreationDate.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</small></p>
+                            <br />
+
+                            <div class="text-right">
+                                <a asp-controller="Uploads" asp-action="Download" asp-route-id="@item.UploadId" class="btn btn-success">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

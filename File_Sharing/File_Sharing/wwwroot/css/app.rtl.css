@@ -1,0 +1,41 @@
+﻿body {
+    font-family: 'Cairo', sans-serif !important;
+    text-align: right !important;
+}
+
+* {
+    font-family: 'Cairo', sans-serif;
+}
+
+.navbar-brand {
+    padding-left: 80px !important;
+    padding-right: 0 !important;
+}
+
+.input-group.input-group-lg {
+    direction: rtl !important;
+}
+
+.input-group > .input-group-append > .btn {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.input-group .form-control:not(:last-child) {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.input-group-append {
+    margin-left: 0 !important;
+    margin-right: -1px !important;
+}
+
+.mu-single-footer .list-unstyled li.media span {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}

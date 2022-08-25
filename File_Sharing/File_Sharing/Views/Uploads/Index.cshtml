@@ -1,0 +1,71 @@
+﻿@model IEnumerable<UploadViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>My Uploads</h1>
+
+<p class="text-right">
+    <a class="btn btn-primary" asp-action="Create">Upload New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Preview</th>
+            <th>
+                File Name
+            </th>
+            <th>
+                Size
+            </th>
+            <th>
+                Content Type
+            </th>
+            <th>Date Time</th>
+            <th>Download Count</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.ContentType.ToLower().StartsWith("image"))
+                    {
+                        <img class="lazy img-thumbnail" data-src="/Uploads/@item.FileName" width="70" height="70" alt="Alternate Text" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OriginalFileName)
+                </td>
+                <td>
+                    @{
+                        var size = item.Size / 1024; //KB
+                        if (size < 1024)
+                        {
+                            <span>@Math.Floor(size) Kb</span>
+                        }
+                        else
+                        {
+                            <span>@(Math.Floor(size / 1024)) Mb</span>
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContentType)
+                </td>
+                <td class="moment-date">
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DownloadCount)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UploadId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

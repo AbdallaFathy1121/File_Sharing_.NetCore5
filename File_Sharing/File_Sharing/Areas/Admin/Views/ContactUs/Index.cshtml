@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ContactUsViewModel>
+
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<section class="content">
+    <div class="row">
+    <div class="col-12">
+        <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Subject</th>
+                            <th>Details</th>
+                            <th>Change Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Email</td>
+                            <td>
+                                <span class="moment-date">@item.SentDate.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</span>
+                            </td>
+                            <td><span class="tag @(item.Status ? "tag-success" : "tag-danger")">@(item.Status ? "Closed" : "Opend")</span></td>
+                            <td>@item.Subject</td>
+                            <td>
+                                <a class="btn btn-primary" asp-area="Admin" asp-controller="ContactUs" asp-action="Details" asp-route-Id="@item.ContactId">Details</a>
+                            </td>
+                            <td>
+                                <form asp-area="Admin" asp-controller="ContactUs" asp-action="ChangeStatus" id="@item.ContactId">
+                                    <input type="hidden" name="Id" value="@item.ContactId" />
+                                    <select name="Status" onchange="$('#@item.ContactId').submit()" class="form-control">
+                                        <option value="">Select Status</option>
+                                        <option value="false">Open</option>
+                                        <option value="true">Closed</option>
+                                    </select>
+                                </form>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+</section>

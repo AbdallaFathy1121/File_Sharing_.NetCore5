@@ -1,0 +1,84 @@
+﻿@inject IViewLocalizer localizer
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1>@localizer["Header"]</h1>
+    <br />
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form asp-controller="Uploads" asp-action="Results">
+                    <div class="input-group mb-3 input-group-lg">
+                        <input type="text" name="Term" class="form-control" placeholder="@localizer["File.Name"]" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="submit" id="button-addon2">@localizer["Button.Search"]</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+            <div class="col-md-12 text-center mt-4">
+                <h2>@localizer["Popular"]</h2>
+                <hr />
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>@localizer["File"]</th>
+                            <th>
+                                @localizer["File.Name"]
+                            </th>
+                            <th>
+                                @localizer["File.Size"]
+                            </th>
+                            <th>
+                                @localizer["Content.Type"]
+                            </th>
+                            <th>@localizer["Date.Time"]</th>
+                            <th>@localizer["Download.Count"]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.PopularDownloads)
+                        {
+                            <tr>
+                                <td>
+                                    @if (item.ContentType.ToLower().StartsWith("image"))
+                                    {
+                                        <img class="lazy img-thumbnail" data-src="/Uploads/@item.FileName" width="70" height="70" alt="Alternate Text" />
+                                    }
+                                </td>
+                                <td>
+                                    <span>@item.OriginalFileName</span>
+                                </td>
+                                <td>
+                                    @{
+                                        var size = item.Size / 1024; //KB
+                                        if (size < 1024)
+                                        {
+                                            <span>@Math.Floor(size) Kb</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@(Math.Floor(size / 1024)) Mb</span>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    <span>@item.ContentType</span>
+                                </td>
+                                <td>
+                                    <span class="moment-date">@item.CreationDate.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</span>
+                                </td>
+                                <td>
+                                    <span>@item.DownloadCount</span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
