@@ -17,3 +17,4 @@
   - Block User
   - Delete User
   - Export Users To Excel Sheet
+  - Manage Contact Us
