@@ -1,10 +1,16 @@
-# Website by asp.net core 5
+# File_Sharing Asp.Net Core 5
 
-=> Login With other Provider such(Google)
-----
-=> English & عربى 
------
-=> Download and Upload Files
-----
-=> Search By File Name
-----
+> User
+  - Serch Files
+  - Manage (Files) in Profile
+  - View number of views of the file
+  - Download File
+  - Login
+  - Register
+  - Login Provider Such (Google)
+  - Navigation
+ ---
+ > Admin
+  - View All Users
+  - Block User
+  - Delete User
