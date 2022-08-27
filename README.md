@@ -9,8 +9,11 @@
   - Register
   - Login Provider Such (Google)
   - Navigation
+  - Contact Us
+  - Support (Arabic - English) By Useing Resources File
  ---
  > Admin
   - View All Users
   - Block User
   - Delete User
+  - Export Users To Excel Sheet
